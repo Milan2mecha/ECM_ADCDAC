@@ -103,19 +103,20 @@ uint16_t adcMeasure(uint8_t mux)
   {
     SMA += SMAsapmles[z];
   }
-  i++;
-  if(i>32)
-  {
-    i=0;
-  }
-  //vypnutí SMA PB4 na GND
+
+  //vypnutí SMA PC3 na GND
   if (PINC & 0x04)
   {
     vystup = SMA/32;
   }
   else
   {
-    vystup = SMAsapmles[i-1];
+    vystup = SMAsapmles[i];
+  }
+  i++;
+  if(i>32)
+  {
+    i=0;
   }
   return vystup;
 }
